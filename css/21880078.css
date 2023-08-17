@@ -41,3 +41,44 @@ h1 {
 #formSearch i {
     color: var(--web1-green);
 }
+
+/* Banner */
+#banner {
+    background-image: url('../images/bg-banner.gif');
+}
+
+#banner > div {
+    background: url('../images/logo.png') left top no-repeat, url('../images/search_bg.png') right top no-repeat;
+    padding: 5rem 0 3rem 0;
+}
+
+#banner a {
+    background-color: var(--web1-pink);
+    font-family: 'Changa One', cursive;
+    font-size: 2rem;
+}
+
+#banner .carousel-item {
+    min-height: 15rem;
+}
+
+#banner .carousel-indicators li {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 1.2rem;
+    border: none;
+    margin: 0 0.25rem;
+}
+
+#banner .carousel-indicators li span {
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.6rem;
+    border: none;
+    text-align: left;
+    text-indent: -9999px;
+}
+
