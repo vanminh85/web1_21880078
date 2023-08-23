@@ -86,3 +86,18 @@ h1 {
 #banner .carousel-indicators li.active span {
     background-color: var(--web1-green);
 }
+
+/* product */
+.readmore {
+    color: var(--web1-blue);
+    margin-top: -4px !important;
+}
+
+/* about us */
+#aboutus {
+    background-color: var(--web1-pink);
+}
+
+#formSignUp {
+    
+}
