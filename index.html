@@ -104,7 +104,7 @@ g<!doctype html>
 
   <!--products-->
   <section class="container">
-    <div class="row text-center py-5">
+    <!-- <div class="row text-center py-5">
       <div class="col-lg-3 col-md-6 col-sm-12">
         <img src="images/icon-1.png" alt="Coffee">
         <h3>Coffee</h3>
@@ -129,7 +129,7 @@ g<!doctype html>
         <p>Lorem ipsum, dolor sit amet consectetour adipicising elit.</p>
         <a class="readmore btn btn-link" href="#">Read more</a>
       </div>
-    </div>
+    </div> -->
   </section>
   <!--about us-->
   <section class="container-fluid" id="aboutus">-
@@ -255,14 +255,13 @@ g<!doctype html>
         </div>
       </div>
     </div>
-  </div>
+  </div>  
   
-  
-  <!-- Optional: Place to the bottom of scripts -->
+  <!-- Optional: Place to the bottom of scripts
   <script>
     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-  
-  </script>
+  </script> -->
+
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -270,6 +269,36 @@ g<!doctype html>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+  <!-- Handlebar.JS--> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" 
+  integrity="sha512-E1dSFxg+wsfJ4HKjutk/WaCzK7S2wv1POn1RRPGh8ZK+ag9l244Vqxji3r6wgz9YBf6+vhQEYJZpSjqWFPg9gg==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script id="products-template" type="text/x-handlebars-template">
+    <div class="row text-center py-5">
+      {{#each data}}
+      <div class="col-lg-3 col-md-6 col-sm-12">        
+        <img src="{{imagepath}}" alt="{{name}}">
+        <h3>{{name}}</h3>
+        <p>{{summary}}</p>
+        <a class="readmore btn btn-link pt=0" href="#">Read more</a>
+      </div>
+      {{/each}}
+    </div>
+  </script>
+  <script>
+    (async function(){
+      const response = await fetch('https://vanminh85.github.io/api/products');
+      const data = await response.json();
+
+      var source = document.getElementById("products-template").innerHTML;
+      var template = Handlebars.compile(source);
+      var context = { data : data };
+      var html = template(context);
+      console.log(html);
+    })();
   </script>
 </body>
 
