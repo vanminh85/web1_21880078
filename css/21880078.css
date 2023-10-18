@@ -87,10 +87,19 @@ h1 {
     background-color: var(--web1-green);
 }
 
+#banner-small {
+    background-image: ulr('../images/bg-banner.gif');
+    padding: 5px;
+}
+
 /* product */
 .readmore {
     color: var(--web1-blue);
     margin-top: -4px !important;
+}
+
+.web1-text-blue {
+    color: var(--web1-blue);
 }
 
 /* about us */
@@ -100,13 +109,14 @@ h1 {
 
 #formSignUp {
     border-style: dashed !important;
-    border-color: rgba(0, 0, 0, 0.5);
-    !important;    
+    border-color: rgba(0, 0, 0, 0.5) !important;    
 }
 
 /* news */
 #news .date {
     background-color: var(--web1-green);
+    width: 5rem;
+    padding: 1rem;
 }
 
 /* footer */
