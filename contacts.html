@@ -212,30 +212,30 @@
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LejMMQoAAAAAOCYSqo5G_osRjPLGXspPPws4gec" async defer></script>
     
   <script>
-  function onClick(e) {
-    e.preventDefault();
-    grecaptcha.enterprise.ready(function () {
-      grecaptcha.enterprise.execute('6LejMMQoAAAAAOCYSqo5G_osRjPLGXspPPws4gec', {action: 'submit'}).then(async function(token) {
-        let response = await fetch('verify.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({'g-token': token})
+    function onClick(e) {
+      e.preventDefault();
+      grecaptcha.enterprise.ready(function () {
+        grecaptcha.enterprise.execute('6LejMMQoAAAAAOCYSqo5G_osRjPLGXspPPws4gec', {action: 'submit'}).then(async function(token) {
+          let response = await fetch('verify.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({'g-token': token})
+          });
+          if (response.status == 200) {
+            sendMail();
+          } else {
+            document.getElementById('responseMessage').innerHTML = 'Error: Can not verify RECAPTCHA';
+          }
         });
-        if (response.status == 200) {
-          sendMail();
-        } else {
-          document.getElementById('responseMessage').innerHTML = 'Error: Can not verify RECAPCHA';
-        }
       });
-    });
-  }
+    }
 
-  function sendMail() {
-    document.getElementById('responseMessage').innerHTML = 'OK';
-  }
+    function sendMail() {
+      document.getElementById('responseMessage').innerHTML = 'OK';
+    }
   </script>
 </body>
 
