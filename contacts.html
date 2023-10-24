@@ -101,7 +101,7 @@
       <p class="text-black-50">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt natus libero rem dolores suscipit laboriosam, non dolorem doloremque minima blanditiis eos quas, architecto quos facere. Officiis consectetur sint incidunt ver</p>
     </div>
     <p class="text-black-50"><i>Send an email. All fields with an * are required.</i></p>
-    <form action="#" method="post" class="text-black-50">
+    <form action="#" method="post" class="text-black-50" onsubmit="onSubmit(event)">
       <div class="row">
         <div class="col">
           <div class="mb-3">
@@ -135,6 +135,7 @@
           <button type="submit" class="btn btn-primary">Send email to us</button>
         </div>        
       </div>
+      <div id="responseMessage" class="text-danger text-center"></div>
     </form>
   </section>  
 
@@ -207,6 +208,35 @@
   <!-- https://cnd.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js -->
   <script src="https://rawcdn.githack.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
   <script src="js/map.js"></script>
+
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LejMMQoAAAAAOCYSqo5G_osRjPLGXspPPws4gec" async defer></script>
+    
+  <script>
+  function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(function () {
+      grecaptcha.enterprise.execute('6LejMMQoAAAAAOCYSqo5G_osRjPLGXspPPws4gec', {action: 'submit'}).then(async function(token) {
+        let response = await fetch('verify.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({'g-token': token})
+        });
+        if (response.status == 200) {
+          sendMail();
+        } else {
+          document.getElementById('responseMessage').innerHTML = 'Error: Can not verify RECAPCHA';
+        }
+      });
+    });
+  }
+
+  function sendMail() {
+    document.getElementById('responseMessage').innerHTML = 'OK';
+  }
+  </script>
 </body>
 
 </html>
