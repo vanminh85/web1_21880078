@@ -126,16 +126,22 @@
         <label for="name" class="form-label">Message *</label>
         <textarea class="form-control" name="name" id="name" rows="3" required></textarea>
       </div>
-      <div class="text-end">
-        <div class="form-check">          
-          <label class="form-check-label" for="copy">
-            Send copy to yourself &nbsp;
-          </label>
-          <input type="checkbox" value="1" id="copy"> &nbsp;&nbsp;
-          <button type="submit" class="btn btn-primary">Send email to us</button>
-        </div>        
-      </div>
-      <div id="responseMessage" class="text-danger text-center"></div>
+      <div class="row">
+        <div class="col">
+          <div id="responseMessage" class="text-success"></div>
+        </div>
+        <div class="col">
+          <div class="text-end">
+            <div class="form-check">          
+              <label class="form-check-label" for="copy">
+                Send copy to yourself &nbsp;
+              </label>
+              <input type="checkbox" value="1" id="copy"> &nbsp;&nbsp;
+              <button type="submit" class="btn btn-primary">Send email to us</button>
+            </div>        
+          </div>
+        </div>
+      </div>      
     </form>
   </section>  
 
@@ -210,6 +216,7 @@
   <script>
     function onSubmit(e) {
       e.preventDefault();
+
       grecaptcha.enterprise.ready(function () {
         grecaptcha.enterprise.execute('6Lcr8MUoAAAAAFNLl0mGkmROGuEVPyN_SFOhjzrI', {action: 'submit'}).then(async function(token) {
           let response = await fetch('verify.php', {
@@ -223,14 +230,20 @@
           if (response.status == 200) {
             sendMail();
           } else {
-            document.getElementById('responseMessage').innerHTML = 'Error: Can not verify RECAPTCHA';
+            let responseMessage = document.getElementById('responseMessage');
+            responseMessage.innerHTML = 'Error: Can not verify RECAPTCHA';
+            responseMessage.classList.remove();
+            responseMessage.classList.toggle('text-danger');
           }
         });
       });
     }
 
     function sendMail() {
-      document.getElementById('responseMessage').innerHTML = 'OK';
+      let responseMessage = document.getElementById('responseMessage');
+      responseMessage.innerHTML = 'OK';
+      responseMessage.classList.remove();
+      responseMessage.classList.toggle('text-success');
     }
   </script>
 </body>
