@@ -212,6 +212,8 @@
   <script src="js/map.js"></script>
 
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcWWsYoAAAAAKYCFPl_pDOUzgjcjV5ERC37bjsi" async defer></script>
+
+  <script src="js/mssv.js"></script>
     
   <script>
     // Function onSubmit of the file verify.php
@@ -239,9 +241,6 @@
         });
       });
     }*/
-    const CAPTCHA_SITE_KEY = '6LcWWsYoAAAAAKYCFPl_pDOUzgjcjV5ERC37bjsi';
-    const CAPTCHA_PROJECT_ID = 'custom-hold-403009';
-    const CAPTCHA_API_KEY = 'AIzaSyCHbSSmq8K0pKOMMOmp5qKrCF5BOyuJnZE';
 
     function onSubmit(e) {
       e.preventDefault();
@@ -282,11 +281,38 @@
       });
     }
 
-    function sendMail() {
+    async function sendMail() {
       let responseMessage = document.getElementById('responseMessage');
-      responseMessage.innerHTML = 'OK';
-      responseMessage.classList.remove();
-      responseMessage.classList.toggle('text-success');
+
+      try {
+        let token = await getAuthenticateToken('test', '1c3cr3@m');
+        let postData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          subject: document.getElementById('message').value,
+          message: document.getElementById('message').value,
+          copy: document.getElementById('copy').value
+        }
+        let response = await fetch(`${AUTHENTICATE_API}/send`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': 'Bearer' + token
+          },
+          body: JSON.stringify(postData)
+        });
+        let result = await response.json();
+        if (response.status == 200) {
+          responseMessage.innerHTML = result.message;
+          responseMessage.classList.remove();
+          responseMessage.classList.toggle('text-success');
+        }
+      } catch (error) {
+        responseMessage.innerHTML = error;
+        responseMessage.classList.remove();
+        responseMessage.classList.toggle('text-danger');
+      }
     }
   </script>
 </body>
