@@ -16,7 +16,7 @@ async function loadData(request, templateId, viewId) {
   }
 
 async function getAuthenticalToken(username, password) {
-  let response = await fetch(`${AUTHENTICATE_API}/authenticate`, {
+  let response = await fetch(`${AUTHENTICATE_API}/send`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
