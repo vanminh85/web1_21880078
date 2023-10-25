@@ -128,7 +128,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <div id="responseMessage" class="text-success"></div>
+          <div id="responseMessage" class="text-primary"></div>
         </div>
         <div class="col">
           <div class="text-end">
@@ -242,6 +242,13 @@
       });
     }*/
 
+    const API='https://web1-api.vercel.app/api';
+    const AUTHENTICATE_API='https://web1-21880078.vercel.app/users';
+
+    const CAPTCHA_SITE_KEY = '6LcWWsYoAAAAAKYCFPl_pDOUzgjcjV5ERC37bjsi';
+    const CAPTCHA_PROJECT_ID = 'custom-hold-403009';
+    const CAPTCHA_API_KEY = 'AIzaSyCHbSSmq8K0pKOMMOmp5qKrCF5BOyuJnZE';
+
     function onSubmit(e) {
       e.preventDefault();
   
@@ -280,7 +287,7 @@
           }
   
       });
-    }
+  }
 
     async function sendMail() {
       let responseMessage = document.getElementById('responseMessage');
@@ -306,15 +313,13 @@
         let result = await response.json();
         if (response.status == 200) {
           responseMessage.innerHTML = result.message;
-          responseMessage.classList.remove();
-          responseMessage.classList.toggle('text-success');
+          responseMessage.className('text-primary');
         } else {
           throw new Error(result.message);
         }
       } catch (error) {
         responseMessage.innerHTML = error;
-        responseMessage.classList.remove();
-        responseMessage.classList.toggle('text-danger');
+        responseMessage.className('text-danger');
       }
     }
   </script>
