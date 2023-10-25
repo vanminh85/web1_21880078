@@ -1,5 +1,5 @@
 const API='https://web1-api.vercel.app/api';
-const AUTHENTICATION_API='https://web1-21880078.vercel.app/users';
+const AUTHENTICATE_API='https://web1-21880078.vercel.app/users';
 
 const CAPTCHA_SITE_KEY = '6LcWWsYoAAAAAKYCFPl_pDOUzgjcjV5ERC37bjsi';
 const CAPTCHA_PROJECT_ID = 'custom-hold-403009';
@@ -16,8 +16,8 @@ async function loadData(request, templateId, viewId) {
     var view = document.getElementById(viewId);
     view.innerHTML = template(context);
   }
-
-async function getAuthenticalToken(username, password) {
+  
+async function getAuthenticateToken(username, password) {
   let response = await fetch(`${AUTHENTICATE_API}/authenticate`, {
     method: 'POST',
     headers: {
