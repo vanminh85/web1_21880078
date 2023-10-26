@@ -53,7 +53,8 @@
                     <a class="nav-link" href="contacts.html">Contacts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+                  <a class="nav-link linkLogin" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+                  <a class="nav-link linkLogout" href="#" onclick="logout()">Logout</a>
                 </li>
             </ul>
             <form class="d-flex my-2 my-lg-0 border rounded-pill" id="formSearch">
@@ -164,7 +165,8 @@
         <a class="nav-link active" href="contacts.html">Contacts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+        <a class="nav-link linkLogin" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+        <a class="nav-link linkLogout" href="#" onclick="logout()">Logout</a>
       </li>
     </ul>
     <p class="text-white-50 py-3">Copyright &copy; 2022 by Ho ten - MSSV</p>
@@ -187,7 +189,7 @@
             <div class="mb-3">
               <input type="password" name="password" id="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="form-control btn">Login</button>
+            <button type="submit" class="form-control btn" onsubmit="login(event)">Login</button>
           </form>
         </div>
 
@@ -216,6 +218,7 @@
   <script src="js/mssv.js"></script>
     
   <script>
+    checkLogin();
     
     /*function onSubmit(e) {
       e.preventDefault();
