@@ -88,7 +88,7 @@ async function verifyToken() {
       }
     });
     if (response.status == 200) {
-      return result.token;
+      return true;
     }
   }
   return false;
