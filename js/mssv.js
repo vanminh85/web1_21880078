@@ -85,7 +85,7 @@ async function verifyToken() {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Authorization': 'Bearer ' + token
-      },
+      }
     });
     if (response.status == 200) {
       return result.token;
