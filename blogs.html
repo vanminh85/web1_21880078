@@ -304,7 +304,6 @@
         agree: (document.getElementById('agree').value == 1)
       }
       let responseMessage = document.getElementById('responseMessage');
-      const AUTHENTICATE_API='https://web1-api.vercel.app/users';
 
       try {
         let response = await fetch(`${AUTHENTICATE_API}/comment`, {
