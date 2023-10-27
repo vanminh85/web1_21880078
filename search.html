@@ -58,9 +58,9 @@
                 </li>
             </ul>
             <form class="d-flex my-2 my-lg-0 border rounded-pill" id="formSearch" method="GET" action="search.html">
-              <input class="ms-3 border-0" type="text" placeholder="Search" name="keyword" id="keyword" required>
-              <button class="btn my-2 my-sm-0 border-0" type="submit">
-                  <i class="fa-solid fa-magnifying-glass"></i></button>
+                <input class="ms-3 border-0" type="text" placeholder="Search" name="keyword" id="keyword" required>
+                <button class="btn my-2 my-sm-0 border-0" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
       </div>
@@ -68,15 +68,8 @@
   </header>
  
   <section id="banner-small"></section>
-  <section class="container py-5">
-    <h1>Gallery</h1>
-    <strong>Filter by Category</strong>
-    <ul class="nav" id="gallery-categories">
-      
-    </ul>
-    <div class="row py-3" id="gallery">
-      
-    </div>
+  <section class="container py-5" id="content">
+    
   </section>
   
   <!-- footer -->
@@ -148,36 +141,25 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/mssv.js"></script>
 
-  <script id="gallery-categories-template" type="text/x-handlebars-template">
-    <li class="nav-item">
-      <a class="nav-link disabled ps-0" href="#" onclick="loadData('gallery', 'gallery-template', 'gallery'); disableLink(this);">Show all</a>
-    </li>
-    {{#each data}}
-    <li class="nav-item">
-      <a class="nav-link" href="#" onclick="loadData('gallery/categories/{{id}}', 'gallery-template', 'gallery'); disableLink(this);">{{name}}</a>
-    </li>
-    {{/each}}
-  </script>
-
-  <script id="gallery-template" type="text/x-handlebars-template">
-    {{#each data}}
-    <div class="col-md-3">
-      <img src="{{thumbpath}}" alt="{{name}}" class="img-thumbnail mb-3">
+  <script id="search-template" type="text/x-handlebars-template">
+    {{#each-data}}
+    <div class="py-3">
+        <h1>{{name}}</h1>
+        <div class="text-black-50">{{summary}}</div>
     </div>
     {{/each}}
   </script>
 
   <script>
     checkLogin();
-    loadData('gallery-categories','gallery-categories-template', 'gallery-categories');
-    loadData('gallery', 'gallery-template', 'gallery');
-
-    function disableLink(link) {
-      let links = document.querySelectorAll('#gallery-categories a');
-      for (let i = 0; i < links.length; i++) {
-        links[i].classList.remove('disabled');
-      }
-      link.classList.toggle('disabled');
+    
+    let searchParams = new URLSearchParams(location.search);
+    let keyword = searchParams.get('keyword');
+    if (keyword) {
+        keyword = keyword.trim();
+        if (keyword != '') {
+            loadData(`search?keyword=${keyword}`, 'search-template', 'content');
+        } 
     }
   </script>
 </body>

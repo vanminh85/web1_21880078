@@ -57,10 +57,10 @@
                   <a class="nav-link linkLogout" href="#" onclick="logout()" style="display: none">Logout</a>
                 </li>
             </ul>
-            <form class="d-flex my-2 my-lg-0 border rounded-pill" id="formSearch">
-                <input class="ms-3 border-0" type="text" placeholder="Search">
-                <button class="btn my-2 my-sm-0 border-0" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i></button>
+            <form class="d-flex my-2 my-lg-0 border rounded-pill" id="formSearch" method="GET" action="search.html">
+              <input class="ms-3 border-0" type="text" placeholder="Search" name="keyword" id="keyword" required>
+              <button class="btn my-2 my-sm-0 border-0" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
       </div>
@@ -304,9 +304,10 @@
         agree: (document.getElementById('agree').value == 1)
       }
       let responseMessage = document.getElementById('responseMessage');
+      let urlAPI = `https://web1-api.vercel.app/users/comment`;
 
       try {
-        let response = await fetch(`${AUTHENTICATE_API}/comment`, {
+        let response = await fetch(urlAPI, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
