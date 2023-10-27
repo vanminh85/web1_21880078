@@ -196,7 +196,7 @@
       <div class="text-black-50">{{{description}}}</div>
     </div>
     <div class="py-3" id="leave-comment">
-      <h3>Leave your comments.</h3>
+      <h3>Leave your comments</h3>
       <form action="#" method="post" class="text-black-50" onsubmit="addComment(event)">
         <input type="hidden" name="blogId" id="blogId" value="{{id}}">
         <div class="row">
@@ -312,7 +312,7 @@
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Application': 'Bearer ' + token
+            "Application": 'Bearer ' + token
           },
           body: JSON.stringify(postData)
         });
