@@ -1,0 +1,10 @@
+<h1 class="text-white ms-3">Testimonials</h1>
+    <div class="row py-3">
+      {{#each data}}
+      <div class="col">
+        <p class="text-black-50 me-3 ms-3">{{summary}}</p>
+          <span class="text-white ms-3">{{name}}</span><br/>
+        <a href="#" class="ms-3">{{email}}</a>
+      </div>
+      {{/each}}
+    </div>
